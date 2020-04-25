@@ -83,6 +83,11 @@ go get github.com/gdrive-org/gdrive
 ```
 The gdrive binary should now be available at `$GOPATH/bin/gdrive`
 
+### Using Docker
+```bash
+docker run -it --name gdrive -v "$PWD":/usr/src/gdrive -w /usr/src/gdrive gdrive:1.10 go build -v
+```
+
 
 ## Gdrive 2
 Gdrive 2 is more or less a full rewrite and is not backwards compatible
