@@ -35,6 +35,14 @@ or set the environment variable `GDRIVE_CONFIG_DIR`.
 Example: `GDRIVE_CONFIG_DIR="/home/user/.gdrive-secondary" gdrive list`
 You will be prompted for a new verification code if the folder does not exist.
 
+#### ~/.gdrive/client_credentials.json
+```json
+{
+  "client_id": "...",
+  "client_secret": "..."
+}
+```
+
 ### Downloads
 | Filename               | Version | Description        | Shasum                                   |
 |:-----------------------|:--------|:-------------------|:-----------------------------------------|

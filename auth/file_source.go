@@ -5,6 +5,7 @@ import (
 	"golang.org/x/oauth2"
 	"io/ioutil"
 	"os"
+	"fmt"
 )
 
 func FileSource(path string, token *oauth2.Token, conf *oauth2.Config) oauth2.TokenSource {
@@ -43,6 +44,25 @@ func ReadFile(path string) ([]byte, bool, error) {
 	return content, true, nil
 }
 
+
+func ReadClientCredentials(path string) (string, string, error) {
+	content, err := ioutil.ReadFile(path)
+	if err != nil {
+		return "", "", err
+	}
+
+	var c struct {
+		ClientID     string `json:"client_id"`
+		ClientSecret string `json:"client_secret"`
+	}
+	if err := json.Unmarshal(content, &c); err != nil {
+		return "", "", err
+	}
+	if c.ClientID == "" || c.ClientSecret == "" {
+		return "", "", fmt.Errorf("client_id or client_id is missing in %s", path)
+	}
+	return c.ClientID, c.ClientSecret, nil
+}
 
 func ReadToken(path string) (*oauth2.Token, bool, error) {
 
